@@ -32,7 +32,7 @@ contract ZombieFactory {
     //我们需要创建一个数据类型为 Zombie 的结构体数组
     //用 public 修饰，命名为：zombies。
     Zombie[] public zombies;
-    
+        
     //在我们的应用里，我们要能创建一些僵尸，定义私有函数createZombie。
     //它有两个参数: _name (类型为string) _dna (类型为uint)。
     //不要忘记使用memory关键字按值传递第一个参数
@@ -40,12 +40,12 @@ contract ZombieFactory {
     //创建一个 Zombie，然后把它加入 zombies 数组中。 
     //新创建的僵尸的 name 和 dna，来自于函数的参数。
         zombies.push(Zombie(_name, _dna));
-     //数组的长度-1作为僵尸的id
+    //数组的长度-1作为僵尸的id
         uint id = zombies.length - 1;
-     //触发NewZombie事件
+    //触发NewZombie事件
         emit NewZombie(id, _name, _dna);
     }
-    
+        
     //我们需要一个辅助函数，它可以从字符串中生成随机 DNA 编号。
     //创建一个 private 函数，命名为 _generateRandomDna。
     //它只接收一个输入变量 _str (类型 string), 返回一个 uint 类型的数值。
@@ -58,17 +58,16 @@ contract ZombieFactory {
         //所以应该return是上面计算的数值对 dnaModulus 求余数(%)。
         return rand % dnaModulus;
     }
-    
-	//创建一个 public 函数，命名为 createRandomZombie。
-	//它将被传入一个变量 _name (数据类型是 string)。 
+        
+    //创建一个 public 函数，命名为 createRandomZombie。
+    //它将被传入一个变量 _name (数据类型是 string)。 
     function createRandomZombie(string memory _name) public {
-	    //函数的第一行应该调用 _generateRandomDna 函数，传入 _name 参数。
-		//结果保存在一个类型为 uint 的变量里，命名为 randDna。
+        //函数的第一行应该调用 _generateRandomDna 函数，传入 _name 参数。
+        //结果保存在一个类型为 uint 的变量里，命名为 randDna。
         uint randDna = _generateRandomDna(_name);
         //第二行调用 _createZombie 函数， 传入参数： _name 和 randDna。
         _createZombie(_name, randDna);
     }
-
 }
 
 ```
